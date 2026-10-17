@@ -1,0 +1,3 @@
+# Keep LF everywhere so the git hook (a shell script) works on Windows checkouts too.
+* text=auto eol=lf
+.githooks/* text eol=lf
