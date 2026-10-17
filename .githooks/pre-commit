@@ -1,0 +1,20 @@
+#!/bin/sh
+# Installed by `npm start`. Solutions belong on your own solutions/<name> branch, never on main.
+# Template maintainers changing problems on purpose: PLAYGROUND_MAINTAINER=1 git commit ...
+
+branch=$(git symbolic-ref --short -q HEAD)
+
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  if [ -z "$PLAYGROUND_MAINTAINER" ] && git diff --cached --name-only | grep -q '^problems/'; then
+    echo ""
+    echo "✖ Solutions don't go on $branch."
+    echo "  Switch to your own branch first:  npm start"
+    echo "  (then your changes come with you:  git add -A && git commit)"
+    echo ""
+    echo "  Maintainer editing the template on purpose?  set PLAYGROUND_MAINTAINER=1 for this commit."
+    echo ""
+    exit 1
+  fi
+fi
+
+exit 0

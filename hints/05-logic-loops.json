@@ -1,0 +1,52 @@
+{
+  "79": [
+    "Handle one number at a time. For each number from 1 to n, decide which of the four outputs it gets.",
+    "Use a `for` loop, the remainder operator `%` to test \"is a multiple of\", and `push` to collect the results in an array.",
+    "Check the \"multiple of both 3 and 5\" case FIRST, then 3, then 5, otherwise use `String(i)`. Push the result each time round the loop."
+  ],
+  "80": [
+    "Build one string per number, starting at 0 (not 1) and ending at `max` (inclusive).",
+    "Loop with `for`. The remainder `i % 2` is 0 for even numbers and 1 for odd ones. A template string like `${i} is even` builds the text.",
+    "Make an empty array. For each `i` from 0 to `max`, push `${i} is even` when `i % 2 === 0`, otherwise `${i} is odd`. Return the array."
+  ],
+  "81": [
+    "The answer depends on which range the score falls in. Think about which check to do first.",
+    "Use an `if / else if / else` chain with `>=` comparisons. Start from the highest grade.",
+    "If `avg >= 90` return \"A\"; else if `avg >= 80` return \"B\"; and so on down to 60 for \"D\". Anything left over is \"F\"."
+  ],
+  "82": [
+    "Each row is a string of stars. Row number `i` has `i` stars. Build the rows one at a time.",
+    "Use two loops: the outer loop goes over the rows, the inner loop adds the stars for that row. Collect the rows in an array and `join` them with a newline.",
+    "Make an empty array `lines`. For `i` from 1 to `rows`, start `line = \"\"`, add `\"*\"` to it `i` times in an inner loop, and push it. Return `lines.join(\"\\n\")`."
+  ],
+  "83": [
+    "You do not need the size of the product, only whether it is positive, negative or zero. What decides that?",
+    "If any number is 0, the answer is \"0\". Otherwise the sign depends on how many numbers are negative: an even count gives \"+\", an odd count gives \"-\".",
+    "First check if `a`, `b` or `c` is `0` and return \"0\". Then count how many of them are `< 0`. Return \"+\" when the count is even (`count % 2 === 0`), otherwise \"-\"."
+  ],
+  "84": [
+    "There are only a few possible orders for three numbers. Think about how to narrow them down with a couple of comparisons.",
+    "Compare `a` with `b` first. In each branch, compare again to find where `c` fits. Nested `if`/`else` is enough.",
+    "If `a <= b`: then if `b <= c` the order is a, b, c; else if `a <= c` it is a, c, b; else c, a, b. Then do the same kind of checks for the `a > b` case."
+  ],
+  "85": [
+    "Always grab the biggest coin you still can. Go through the coins in the order they are given.",
+    "An outer loop over the coins, and an inner `while` loop that keeps taking the same coin while it still fits in what is left.",
+    "Keep `remaining = amount` and an empty result array. For each coin: `while (remaining >= coin)` push the coin and subtract it from `remaining`. Return the result."
+  ],
+  "86": [
+    "Look at every year in the range and keep only the leap ones.",
+    "A `for` loop from `start` to `end` (inclusive), a leap-year test with `%`, and `push` into a result array.",
+    "A year is leap when `(year % 4 === 0 && year % 100 !== 0) || year % 400 === 0`. For each year that passes this test, push it. Return the array."
+  ],
+  "87": [
+    "Work out how far each number is from 100 first, then compare the two distances.",
+    "The distance is `Math.abs(n - 100)`. Compare `a`'s distance with `b`'s distance.",
+    "Return `b` only when its distance is strictly smaller than the distance of `a`. Otherwise (smaller or equal) return `a`. That also settles the tie."
+  ],
+  "88": [
+    "The pattern repeats every 6 petals. What operation turns any number into a position from 0 to 5?",
+    "Keep the six phrases in an array and use the remainder operator `%` to wrap the petal count into the array. Remember that petal 1 is the FIRST phrase, which is index 0.",
+    "The index is `(petals - 1) % 6`. Return `phrases[index]`."
+  ]
+}

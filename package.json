@@ -1,0 +1,25 @@
+{
+  "name": "js-problem-solving-playground",
+  "version": "1.0.0",
+  "private": true,
+  "description": "100 easy JavaScript problems with tests, hints and a team workflow. No dependencies.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "playground": {
+    "upstream": "https://github.com/hisham-mhammed-afifi/Problem-solving-practice.git"
+  },
+  "scripts": {
+    "start": "node scripts/start.js",
+    "p": "node scripts/run.js",
+    "w": "node scripts/run.js --watch",
+    "test": "node scripts/run.js --all",
+    "next": "node scripts/next.js",
+    "progress": "node scripts/progress.js",
+    "hint": "node scripts/hint.js",
+    "sync": "node scripts/sync.js",
+    "compare": "node scripts/compare.js",
+    "check": "node scripts/check.js"
+  }
+}

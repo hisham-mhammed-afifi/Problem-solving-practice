@@ -1,0 +1,42 @@
+{
+  "71": [
+    "The object already knows its own keys. Look for a built-in that asks it for them.",
+    "Either `Object.keys(obj)`, or a `for...in` loop that collects each key.",
+    "With the loop version: make an empty array, run `for (const key in obj)` and push each `key` into it, then return the array."
+  ],
+  "72": [
+    "If you delete from `obj` itself, the caller's object changes too. Work on a copy instead.",
+    "Spread `{ ...obj }` (or `Object.assign({}, obj)`) makes a shallow copy. The `delete` operator removes a key from an object.",
+    "Make the copy in a new variable, `delete copy[key]` on the copy, then return the copy."
+  ],
+  "73": [
+    "An object has no `.length` like an array does. Is there a way to turn its keys into something that does?",
+    "`Object.keys(obj)` gives an array of the keys, and arrays have a `.length`. A `for...in` loop with a counter works too.",
+    "Get the array of keys and return how many items it has. Do not look at the values at all."
+  ],
+  "74": [
+    "Start with an empty result object. For each entry of the original, you will store something in the result.",
+    "You need both the key and the value of each entry: `Object.entries(obj)` gives `[key, value]` pairs, or use `for...in`.",
+    "Loop over the pairs. For each one, set `result[value] = key`. Return `result` when the loop is done."
+  ],
+  "75": [
+    "Each property turns into a tiny two-item array: the key first, then the value.",
+    "There is a built-in that does exactly this: `Object.entries`. Or loop with `for...in` and build each pair yourself.",
+    "With a loop: make an empty array, then for each `key` push `[key, obj[key]]`. Return the array."
+  ],
+  "76": [
+    "An object can hold data (like `radius`) and functions (methods). Return one object that has both.",
+    "Write an object literal. Inside it, method shorthand like `area() { ... }` defines a method, and `this.radius` reads the radius of the same object. `Math.PI` is π.",
+    "Return `{ radius, area() {...}, perimeter() {...} }`. Area is PI times the radius squared. Perimeter is 2 times PI times the radius."
+  ],
+  "77": [
+    "An empty object and an empty array both have \"nothing inside\". Is there one way to count what is inside either of them?",
+    "`Object.keys(value)` works on objects and on arrays (the keys of an array are its indexes). The result is an array with a `.length`.",
+    "Get the list of keys, compare its length to 0, and return that comparison."
+  ],
+  "78": [
+    "Sorting compares two items at a time. What should be compared here: the whole objects, or something inside them?",
+    "Array `sort` takes a compare function `(x, y) => ...`. Compare `x.title` with `y.title`. `sort` changes the array it is called on, so sort a copy.",
+    "Copy first with `[...items]`. Then `.sort((x, y) => ...)` where the function returns a negative number if x.title comes first, a positive number if y.title comes first, and 0 if they are equal."
+  ]
+}

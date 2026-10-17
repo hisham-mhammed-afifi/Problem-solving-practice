@@ -1,0 +1,102 @@
+{
+  "1": [
+    "The function must return a string, not call console.log. Whatever you return is what gets compared.",
+    "Build the string from fixed text plus the name. Template literals (backticks with `${...}`) make this easy.",
+    "Return `Hello, ` + name + `!`, or the template literal version of it."
+  ],
+  "2": [
+    "You do not need to check every number. Think about how the even numbers are spaced.",
+    "A `for` loop can step by 2 instead of by 1: `i += 2`. Push each value into an array.",
+    "Create an empty array, loop `i` from 0 while `i <= limit`, adding 2 each time, push `i`, and return the array."
+  ],
+  "3": [
+    "This is a grid: for every row number you need a whole list of products.",
+    "Use two nested loops. The outer loop picks the row `i`, the inner loop picks the column `j`, and each cell is `i * j`.",
+    "For `i` from 1 to `max`: make an empty `row`, for `j` from 1 to `max` push `i * j` into it, then push `row` into the result."
+  ],
+  "4": [
+    "This is a single multiplication with a constant conversion factor.",
+    "Store the factor in a named constant, for example `const MILES_PER_KM = 0.621371`.",
+    "Return `km` multiplied by that constant."
+  ],
+  "5": [
+    "Water freezes at 0 C = 32 F and boils at 100 C = 212 F. Use that to check your formula.",
+    "The formula is F = C * 9/5 + 32.",
+    "Multiply `c` by 9, divide by 5, then add 32, and return the result."
+  ],
+  "6": [
+    "An even number leaves nothing over when you divide it by 2.",
+    "The remainder operator `%` gives what is left over after division. Careful: in JavaScript `-3 % 2` is `-1`, not `1`.",
+    "Check `n % 2 === 0` for even and return `\"even\"`. Anything else is `\"odd\"`. Do not test for `=== 1`, which fails for negative numbers."
+  ],
+  "7": [
+    "Divisible means the division leaves nothing over.",
+    "The remainder operator `%` gives the leftover. What should the leftover be here?",
+    "Return the result of the comparison `n % 10 === 0`. It already is a boolean, so no `if` is needed."
+  ],
+  "8": [
+    "The area of a rectangle comes from its two side lengths.",
+    "Area = length times width.",
+    "Return `length * width`."
+  ],
+  "9": [
+    "Heron's formula needs the semi-perimeter first: half of the sum of the sides.",
+    "With s = (a + b + c) / 2, the area is the square root of s * (s - a) * (s - b) * (s - c).",
+    "Compute `s`, multiply the four values together, and return `Math.sqrt(...)` of the product."
+  ],
+  "10": [
+    "Compare two numbers first, then compare the winner with the third.",
+    "Keep a variable `max = a`, then check `if (b > max)` and `if (c > max)`.",
+    "Two `if` statements (or two ternaries) are all you need. No loop required."
+  ],
+  "11": [
+    "Flipping the sign is the same as multiplying by something. What?",
+    "Unary minus (`-n`) flips the sign, but JavaScript has a negative zero: `-0`. Strict equality checks treat `0` and `-0` as different.",
+    "Handle zero on its own (`if (n === 0) return 0;`), or use `0 - n`, which gives plain `0` for zero."
+  ],
+  "12": [
+    "The operator arrives as a string, so you need to choose what to do based on its value.",
+    "A `switch` on `op` (or an `if / else if` chain) with one case for each operator works well.",
+    "In each case, return the matching expression: `a + b`, `a - b`, `a * b`, `a / b`."
+  ],
+  "13": [
+    "There are three rules, and the later ones override the earlier ones. Think about the order you check them in.",
+    "Use the remainder operator `%` for \"divisible by\". Combine the checks with `&&` and `||`.",
+    "Leap if (`year % 4 === 0` and `year % 100 !== 0`) or `year % 400 === 0`."
+  ],
+  "14": [
+    "Think about what the answer is for n = 0 and n = 1 first. Those are your base cases.",
+    "n! is n × (n-1)!. You can build the answer with a loop that multiplies a running total, or with recursion.",
+    "Start `result = 1`, then for i from 2 up to n do `result *= i`. Return result."
+  ],
+  "15": [
+    "Handle the small cases first: anything below 2 is not prime.",
+    "Try dividing `n` by each number from 2 upwards. If any of them divides it evenly, it is not prime.",
+    "Loop `i` from 2 while `i * i <= n`. If `n % i === 0`, return `false`. If the loop finishes, return `true`."
+  ],
+  "16": [
+    "You can solve it with strings or with arithmetic. Pick whichever feels more natural.",
+    "String way: turn the number into a string, split it into characters, reverse, join, and convert back to a number. Math way: peel off the last digit with `% 10` and rebuild.",
+    "Math way: start `result = 0`. While `n > 0`: `result = result * 10 + (n % 10)`, then `n = Math.floor(n / 10)`. Return result."
+  ],
+  "17": [
+    "Euclid worked this out over 2000 years ago. Think about what the remainder of `a / b` tells you.",
+    "The gcd of `a` and `b` is the same as the gcd of `b` and `a % b`. Repeat until the second number is 0.",
+    "While `b` is not 0: save `b`, set `b = a % b`, set `a` to the saved `b`. When the loop ends, `a` is the answer."
+  ],
+  "18": [
+    "Go through every number below the limit and decide whether to add it to a running total.",
+    "Use a `for` loop with a total, and the remainder operator `%` to test for multiples of 3 or 5.",
+    "Start `total = 0`. For `i` from 1 while `i < limit`: if `i % 3 === 0 || i % 5 === 0`, add `i` to the total. Return the total."
+  ],
+  "19": [
+    "A factor of `n` is a number that divides `n` with nothing left over.",
+    "Loop through the candidates from 1 to `n` and test each one with the remainder operator `%`.",
+    "Start with an empty array. For `i` from 1 to `n`: if `n % i === 0`, push `i`. Return the array."
+  ],
+  "20": [
+    "First work out the plain distance between `n` and 13, ignoring which one is bigger.",
+    "`Math.abs(n - 13)` gives that distance. Then decide when to double it.",
+    "Compute `diff = Math.abs(n - 13)`. If `n > 13` return `diff * 2`, otherwise return `diff`."
+  ]
+}

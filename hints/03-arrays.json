@@ -1,0 +1,127 @@
+{
+  "46": [
+    "You need a running total that starts at the right value, and then you visit every element once.",
+    "A for...of loop with a \"total\" variable works, and so does reduce. Pay attention to the starting value.",
+    "Start with total = 0, add each element to it, then return total. An empty array just gives the starting value back."
+  ],
+  "47": [
+    "Picture reading the array from the last element back to the first one.",
+    "You can loop backwards, or copy the array first and then use the built-in .reverse() on the copy (.reverse() changes the array it is called on!).",
+    "Make a copy with [...arr] (or arr.slice()), then reverse the copy and return it. Or build a result array by looping i from arr.length - 1 down to 0."
+  ],
+  "48": [
+    "Remember that numbers are not strings: 9 is smaller than 10, even though \"9\" comes after \"10\" alphabetically.",
+    "Array.prototype.sort accepts a compare function (a, b) => ... that tells it how two items should be ordered.",
+    "The compare function should return a negative number if a goes first, positive if b goes first. For ascending numbers, return a - b."
+  ],
+  "49": [
+    "You are keeping some elements and dropping others. What question decides if an element stays?",
+    "filter() builds a new array from the elements that pass a test, so the original is left alone.",
+    "Keep an element when it is greater than or equal to 0: arr.filter(...) with that check."
+  ],
+  "50": [
+    "Think about how you would find the tallest person in a line: remember the tallest one you have seen so far.",
+    "Keep a variable \"max\" and compare every element with it. Be careful what you start it with: 0 is not safe when every number is negative.",
+    "Start with max = arr[0]. Loop through the array and whenever an element is bigger than max, replace max. Return max at the end. (Math.max(...arr) also works.)"
+  ],
+  "51": [
+    "For each element, ask: \"have I already kept this value?\"",
+    "A Set only stores each value once, so it can do the \"already seen\" bookkeeping for you (and it remembers insertion order).",
+    "Turn the array into a Set and back into an array: [...new Set(arr)]. Or loop and push an element only if the result does not contain it yet."
+  ],
+  "52": [
+    "Imagine two sorted queues: at each step, the next element of the merged result is one of the two front elements.",
+    "Keep one index per array (i and j). Compare a[i] with b[j], take the smaller one, and move that array's index forward.",
+    "Loop while both indexes are inside their arrays, pushing the smaller element each time. When one array runs out, push everything that is left in the other one."
+  ],
+  "53": [
+    "This is two small jobs in one: join the arrays, then remove the duplicates.",
+    "A Set keeps each value only once. Spreading both arrays into one Set does both jobs at once.",
+    "Put all the elements of a and then b into a single array, build a Set from it, and spread the Set back into an array."
+  ],
+  "54": [
+    "You want one output element for every input element, so the new array has the same length.",
+    "map() transforms every element with a function and returns a new array.",
+    "arr.map(x => ...) where the function returns x multiplied by itself."
+  ],
+  "55": [
+    "Look at the elements one by one, from the start, and stop as soon as you find the one you want.",
+    "A classic for loop gives you the index i directly. Compare arr[i] with v using ===.",
+    "Loop i from 0 to arr.length - 1; as soon as arr[i] === v, return i. If the loop ends without finding anything, return -1."
+  ],
+  "56": [
+    "Duplicates of the biggest number must not be mistaken for the second biggest. Think about how to get rid of them first.",
+    "Make the values unique (a Set helps), then either sort them from largest to smallest or track the top two in a loop.",
+    "Unique values sorted descending: the answer is the element at index 1. If that element does not exist, you get undefined for free."
+  ],
+  "57": [
+    "If all elements are equal, then every one of them equals the first element. What if one of them does not?",
+    "every() returns true only when its test passes for all elements (and it returns true for an empty array).",
+    "arr.every(x => x === arr[0]). Or loop and return false at the first element that differs from arr[0]; return true after the loop."
+  ],
+  "58": [
+    "You can compute both numbers in a single pass over the array, with two running variables.",
+    "A sum starts at 0 (adding nothing) and a product starts at 1 (multiplying by nothing). Those starting values also give you the answer for an empty array.",
+    "Set sum = 0 and product = 1, loop over the array doing sum += x and product *= x, then return { sum, product }."
+  ],
+  "59": [
+    "To know which value is the most frequent you first need to know how many times each value appears.",
+    "Count with an object or a Map: the value is the key, the number of times you have seen it is the stored number.",
+    "Loop once to fill the counts. Then loop over the counts (or keep track while counting) and remember the value with the highest count."
+  ],
+  "60": [
+    "A value is a duplicate if you meet it again after having seen it before. How can you remember what you have seen?",
+    "Use a Set (or a counts object) of the values seen so far. Careful: a value that appears three times must still be reported only once.",
+    "Count every value first. Then go through the unique values in first-seen order and keep the ones whose count is greater than 1."
+  ],
+  "61": [
+    "An element is either a plain value or another array. An inner array is the same problem again, just smaller.",
+    "Recursion fits well: flatten each inner array with the same function. Array.isArray(item) tells you which case you are in. (There is also a built-in flat(), try writing it yourself first.)",
+    "Loop over arr with an empty result. If the item is an array, add everything returned by flatten(item); otherwise push the item."
+  ],
+  "62": [
+    "Go through a and decide, element by element, whether it stays. The question is \"is it in b?\".",
+    "filter() keeps the elements that pass a test. The test can use b.includes(x) (or a Set built from b, which is faster for long arrays).",
+    "a.filter(x => !b.includes(x)). Remember the \"!\": you keep the elements that are NOT in b."
+  ],
+  "63": [
+    "JavaScript can turn any value into true or false. Falsy values are the ones that become false.",
+    "filter() keeps an element when your test returns a truthy value. What if the element itself is the test result?",
+    "arr.filter(x => x), or arr.filter(Boolean): each element is kept exactly when it is truthy."
+  ],
+  "64": [
+    "For each number, there is exactly one other number that would complete the sum. What is it?",
+    "The brute force way checks every pair with two nested loops. A faster way remembers earlier numbers (and their indexes) in a Map.",
+    "Loop through the array. For nums[i], compute need = target - nums[i]. If need was already seen earlier, return [thatIndex, i]; otherwise store nums[i] with its index."
+  ],
+  "65": [
+    "Both functions return a piece of the array. Which built-in method cuts a piece out without changing the original?",
+    "slice(start, end) copies a section. Negative start values count from the end. Watch out for n = 0 in last(): slice(-0) is the same as slice(0).",
+    "first: arr.slice(0, n). last: arr.slice(-n), but return [] when n is 0 (or use arr.slice(Math.max(arr.length - n, 0)))."
+  ],
+  "66": [
+    "You need an array with exactly n slots, and every slot gets the same value.",
+    "You can start with an empty array and push in a loop, or create an array of length n and use the built-in fill().",
+    "new Array(n).fill(value) (or Array(n).fill(value)), or: loop i from 0 to n - 1 and push value each time."
+  ],
+  "67": [
+    "Picture a deck of cards: you repeatedly pick a random card from the cards that are not yet \"placed\" and put it in the next position.",
+    "Fisher-Yates: walk the array from the end to the start; at each index i, pick a random index j between 0 and i and swap the two elements. Do it on a copy.",
+    "result = [...arr]; for i from result.length - 1 down to 1: j = Math.floor(Math.random() * (i + 1)); swap result[i] and result[j]. Return result."
+  ],
+  "68": [
+    "Look at two neighbours at a time: if the left one is bigger than the right one, they are in the wrong order.",
+    "One pass of swapping neighbours pushes the biggest remaining number to the end (\"bubbles up\"). Repeat passes until nothing is left to swap.",
+    "Use two nested loops: the outer one shrinks the unsorted part by one each pass, the inner one compares arr[i] with arr[i + 1] and swaps them if arr[i] is bigger (use a temporary variable or destructuring to swap)."
+  ],
+  "69": [
+    "You take the array piece by piece: elements 0 to size-1, then size to 2*size-1, and so on.",
+    "A loop that jumps forward by size each time (i += size), together with slice(i, i + size), cuts out each chunk. slice is forgiving when you ask for more than is left.",
+    "result = []; for (let i = 0; i < arr.length; i += size) push arr.slice(i, i + size) into result. Return result."
+  ],
+  "70": [
+    "You are keeping every element except the ones that match. All matches go, not only the first one.",
+    "filter() builds a new array from the elements that pass a test, and leaves the original untouched.",
+    "arr.filter(x => x !== value): keep each element that is not equal to the value."
+  ]
+}

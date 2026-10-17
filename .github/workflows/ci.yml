@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main, 'solutions/**']
+  pull_request:
+    branches: [main]
+
+jobs:
+  # main is the clean template: every test file must load, stubs must be empty, hints must exist.
+  template:
+    if: github.ref == 'refs/heads/main' || github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run check
+
+  # Solutions branches: show how many problems have been solved (informational only).
+  progress:
+    if: startsWith(github.ref, 'refs/heads/solutions/')
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: npm run progress
+      - run: npm run check -- --allow-solutions

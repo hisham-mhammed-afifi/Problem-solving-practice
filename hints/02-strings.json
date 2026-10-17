@@ -1,0 +1,127 @@
+{
+  "21": [
+    "Think about walking through the string from the last character back to the first.",
+    "A loop that counts down from `str.length - 1` works. So does turning the string into an array of characters, reversing it and joining it back.",
+    "Start with `result = \"\"`. For `i` from the last index down to 0, add `str[i]` to `result`. Return `result`."
+  ],
+  "22": [
+    "A palindrome reads the same in both directions. Do you already have a way to flip a string?",
+    "Compare the string with its reversed copy, or compare characters from both ends while moving towards the middle.",
+    "Two pointers: `left = 0` and `right = str.length - 1`. While `left < right`, if the two characters differ return false, otherwise move both pointers inwards. If the loop finishes, return true."
+  ],
+  "23": [
+    "Clean the string first, then run the same check as for a normal palindrome.",
+    "Use `toLowerCase()` to ignore case, and `replaceAll(\" \", \"\")` (or `split(\" \").join(\"\")`) to drop the spaces.",
+    "Build `cleaned` (lower case, no spaces). Then compare `cleaned` with its reverse. Other punctuation stays in the string."
+  ],
+  "24": [
+    "This is not just trimming the ends. Every space has to go, even the ones in the middle.",
+    "Two common ways: `split(\" \")` followed by `join(\"\")`, or `replaceAll(\" \", \"\")`.",
+    "For the split/join way: `str.split(\" \")` gives the pieces between the spaces. Joining those pieces with an empty string glues them back together."
+  ],
+  "25": [
+    "Decide what counts as a vowel first. Does it matter if a letter is upper or lower case?",
+    "Lower-case the string once, then loop over its characters and check each one against `\"aeiou\"` (for example with `includes`).",
+    "Keep a counter starting at 0. For each character of `str.toLowerCase()`, if `\"aeiou\".includes(ch)` add 1. Return the counter."
+  ],
+  "26": [
+    "Only the first character changes. Think about splitting the string into \"the first character\" and \"the rest\".",
+    "Use `str.charAt(0).toUpperCase()` for the first letter and `str.slice(1)` for everything after it.",
+    "Return the upper-cased first character followed by `str.slice(1)`. Watch the empty string: `str[0]` is `undefined` there, but `str.charAt(0)` is `\"\"`."
+  ],
+  "27": [
+    "Capitalizing one word is exactly problem 26. Now do it for every word.",
+    "Split the string on `\" \"` into words, change each word with `map`, then join the words back with `\" \"`.",
+    "`words = str.split(\" \")`. For each word, upper-case its first character and add the rest of the word. Join with `\" \"`. An empty word (from a double space) must stay empty, so prefer `charAt(0)` over `word[0]`."
+  ],
+  "28": [
+    "Break the sentence into words first, then compare their lengths.",
+    "`str.split(\" \")` gives an array of words. Walk through it while remembering the longest word seen so far.",
+    "Start with `longest = \"\"`. For each word, if `word.length > longest.length` replace `longest`. Using `>` (not `>=`) keeps the first word when there is a tie."
+  ],
+  "29": [
+    "Sorting is the key idea. But can you sort a string directly, or do you need an array first?",
+    "Turn the string into an array of characters with `split(\"\")`, sort the array, then `join(\"\")` it back.",
+    "Chain three steps: split into single characters, sort the array, join with an empty string. The default `sort()` compares text, which is exactly right for lower-case letters."
+  ],
+  "30": [
+    "You need to remember a number for each character. Which data structure maps a key to a value?",
+    "Use an object as a counter: loop over the characters and add 1 to `counts[ch]`.",
+    "Start with `counts = {}`. For each character: if `counts[ch]` does not exist yet, set it to 1, otherwise add 1. (`(counts[ch] || 0) + 1` does both.) Return `counts`."
+  ],
+  "31": [
+    "First count how many times each character appears. Then look for the first one whose count is 1.",
+    "Do two passes: one to build a counts object (or a Map), one to walk the string in order and check the counts.",
+    "Pass 1: build `counts` like in problem 30. Pass 2: loop over the string from the start and return the first character whose count is 1. After the loop, return `null`."
+  ],
+  "32": [
+    "You only want to keep a character the first time you see it.",
+    "A `Set` remembers what you have already seen. Or check `result.includes(ch)` before adding.",
+    "Start with `result = \"\"`. For each character, if `result` does not contain it yet, append it. Return `result`."
+  ],
+  "33": [
+    "Repeating is just adding the same text to the end again and again.",
+    "A loop that runs `n` times and glues `str` onto a growing result does it without `repeat`.",
+    "Start with `result = \"\"`. Do `result += str` exactly `n` times. When `n` is 0 the loop never runs and you return `\"\"`."
+  ],
+  "34": [
+    "Handle one character at a time: decide whether it is upper case or lower case.",
+    "Compare a character with its `toUpperCase()` version. If they are the same, it is already upper case (or it is not a letter at all).",
+    "For each character: if `ch === ch.toUpperCase()`, add `ch.toLowerCase()`, otherwise add `ch.toUpperCase()`. Non-letters are equal in both cases, so they come out unchanged."
+  ],
+  "35": [
+    "First decide: when does the text need cutting at all?",
+    "If `str.length` is not more than `maxLength`, return the string as it is. Otherwise take the first `maxLength` characters with `slice(0, maxLength)`.",
+    "In the \"too long\" case return the cut text plus `suffix`. The suffix is not counted in `maxLength`."
+  ],
+  "36": [
+    "Cut the string into equal-sized pieces. The last piece may be shorter.",
+    "Loop with `i` jumping by `size` each time (`i += size`) and take `str.slice(i, i + size)`.",
+    "Start with `chunks = []`. For i = 0, size, 2 * size, ... while `i < str.length`, push `str.slice(i, i + size)`. `slice` stops safely at the end of the string."
+  ],
+  "37": [
+    "Find the first match, then keep looking after it.",
+    "`str.indexOf(sub, from)` finds the next match starting at position `from` and returns -1 when there is none. (Another trick: how many pieces does `str.split(sub)` give?)",
+    "Loop: `pos = str.indexOf(sub, pos)`. While it is not -1, add 1 to your count and move `pos` to the match position plus `sub.length`, so matches never overlap. Stop when you get -1."
+  ],
+  "38": [
+    "Think of three steps: make it lower case, replace the \"junk\", then tidy the ends.",
+    "A regular expression like `/[^a-z0-9]+/g` matches a whole run of non-alphanumeric characters at once, and `replace` can swap each run for \"-\".",
+    "Lower-case first. Replace every run of characters that are not a-z or 0-9 with a single \"-\". Then remove a \"-\" at the very start and at the very end (for example with `/^-+|-+$/g`)."
+  ],
+  "39": [
+    "Most numbers end in \"th\". Only a few endings are special.",
+    "Look at `n % 10` for the last digit (1 → \"st\", 2 → \"nd\", 3 → \"rd\"). But 11, 12 and 13 are exceptions, so also look at `n % 100`.",
+    "If `n % 100` is 11, 12 or 13 the suffix is \"th\". Otherwise look at `n % 10`: 1 gives \"st\", 2 gives \"nd\", 3 gives \"rd\", anything else gives \"th\". Return the number followed by the suffix."
+  ],
+  "40": [
+    "Tags always start with \"<\" and finish with \">\". Everything from one to the other should disappear.",
+    "A regular expression can match a \"<\", then any number of characters that are not \">\", then \">\". Replace every match with an empty string. (You can also loop and track whether you are \"inside a tag\".)",
+    "Pattern pieces: `<`, then `[^>]*` (any number of characters that are not `>`), then `>`. Add the `g` flag so every tag is replaced, and use `\"\"` as the replacement."
+  ],
+  "41": [
+    "Count the x characters and the o characters separately, then compare the two counts.",
+    "Lower-case the string so \"X\" and \"x\" are treated the same, then loop over it and update two counters.",
+    "One counter goes up on \"x\", the other on \"o\", and every other character is ignored. Return whether the two counters are equal."
+  ],
+  "42": [
+    "Think about which strings count as numbers: spaces at the ends are fine, but an empty string is not a number.",
+    "Trim the string, check that something is left, then try `Number(...)`. A non-number gives `NaN`, which you can test with `Number.isNaN`.",
+    "Trim the string. If nothing is left, return false. Otherwise convert it with `Number` and return whether the result is NOT `NaN`. (A regular expression on the trimmed string works too.)"
+  ],
+  "43": [
+    "The extension is whatever comes after the LAST dot.",
+    "`lastIndexOf(\".\")` gives the position of the last dot (or -1 if there is none), and `slice` can take everything after a position.",
+    "Find `dot = filename.lastIndexOf(\".\")`. If it is -1, return `\"\"`. Otherwise return `filename.slice(dot + 1)`."
+  ],
+  "44": [
+    "Rotating right means the last characters jump to the front.",
+    "Cut the string in two with `slice`: the last few characters and the rest. Then put them back in the swapped order.",
+    "First reduce `n` with `n % str.length` so a full turn does nothing (an empty string has length 0 and `% 0` gives NaN, so handle it first). Then return the last `k` characters followed by the first `str.length - k` characters."
+  ],
+  "45": [
+    "Build the result from \"everything before the index\" and \"everything after the index\".",
+    "Use `slice(0, index)` for the part before and `slice(index + 1)` for the part after, and join them with `+`.",
+    "First check the index: if it is negative or `>= str.length`, return `str` unchanged. Otherwise return the part before plus the part after."
+  ]
+}

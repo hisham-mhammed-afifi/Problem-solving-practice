@@ -1,0 +1,62 @@
+{
+  "89": [
+    "The function you write does not return the text itself. It returns another function.",
+    "A function can be returned like any other value, for example with an arrow function: `() => ...`.",
+    "Return an inner function whose body just returns \"Hello World\". It does not need any parameters."
+  ],
+  "90": [
+    "The counter has to remember where it is between calls. Where could that number live so it survives after each call ends?",
+    "This is a closure: a variable declared in the outer function stays alive for the inner function that is returned.",
+    "Keep `let count = n` in the outer function. The inner function returns the current `count` and then increases it (`count++` does both in the right order)."
+  ],
+  "91": [
+    "First decide what `expect(val)` hands back: an object, so that you can write `expect(5).toBe(...)`.",
+    "The object has two methods. Both can use `val` from the outer function (a closure). Each one either returns `true` or throws.",
+    "In `toBe`: `if (val === other) return true;` otherwise `throw new Error(...)` with the exact message from the description. `notToBe` is the mirror image."
+  ],
+  "92": [
+    "Three functions need to read and change the same number. Where can they all see it?",
+    "Declare `let value = init` inside `createCounter`, then return an object whose methods use and change `value` (closure).",
+    "Each method updates `value` (`value++`, `value--`, or `value = init`) and then returns `value`. Watch out: `value++` returns the OLD value, so update first and return after."
+  ],
+  "93": [
+    "Build a fresh array and fill it while you walk through the old one. Your own array is the \"result\".",
+    "A plain `for` loop over the indexes works well, because you also need the index to give to `fn`.",
+    "Create `result = []`. For each index `i`, call `fn(arr[i], i)` and push what it returns into `result`. Return `result` at the end."
+  ],
+  "94": [
+    "Walk through the array and decide, item by item, whether it goes into a new array.",
+    "Use a `for` loop and an `if`. You need the index too, because `fn` receives it as the second argument.",
+    "Create `result = []`. For each index `i`, if `fn(arr[i], i)` is truthy, push `arr[i]` into `result`. Return `result`."
+  ],
+  "95": [
+    "Think of a running total that you update as you go through the array. That is the \"accumulator\".",
+    "Declare `let accumulator = init`, then loop over the array with `for` / `for...of` and update the accumulator each time.",
+    "For each item: `accumulator = fn(accumulator, item)`. When the loop ends (or immediately, for an empty array) return `accumulator`."
+  ],
+  "96": [
+    "Just like in maths, f(g(h(x))): the LAST function in the list gets the input first.",
+    "You return a function that takes `x`. Inside it, pass the value through the list of functions, going from the end of the array to the start.",
+    "Set `let value = x`. Loop `i` from `functions.length - 1` down to `0` and do `value = functions[i](value)`. Return `value`. With no functions, the loop does nothing, so you get `x` back."
+  ],
+  "97": [
+    "The `...args` in the signature already collects every argument for you.",
+    "`...args` is a real array, and arrays know their own size.",
+    "Return `args.length`."
+  ],
+  "98": [
+    "The wrapper has to remember whether it has already been called.",
+    "Use a closure: a variable outside the returned function (like a `called` flag). Use `...args` to pass the arguments through to `fn`.",
+    "Return a function `(...args) => {...}`. If the flag is already set, return `undefined`. Otherwise set the flag, then return `fn(...args)`."
+  ],
+  "99": [
+    "Inside a method, `this` is the array you called it on. Use `this` the way you would use a normal array variable.",
+    "Use a normal `function () {}` (not an arrow function), because arrow functions do not have their own `this`. The last index is `this.length - 1`.",
+    "First check whether `this.length` is 0 and return -1 if so. Otherwise return the element at index `this.length - 1`."
+  ],
+  "100": [
+    "A Promise is the right tool for \"do something later\": it resolves when you tell it to.",
+    "`new Promise((resolve) => ...)` gives you a `resolve` function. `setTimeout` can call it after a delay.",
+    "Return `new Promise((resolve) => setTimeout(resolve, ms))`."
+  ]
+}
