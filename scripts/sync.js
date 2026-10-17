@@ -30,7 +30,7 @@ if (!tryGit('rev-parse', '--verify', '--quiet', template).ok) fail(`${template} 
 const branch = currentBranch();
 if (!branch) fail('You are on a detached HEAD. Switch to your solutions branch first.');
 
-const before = git('rev-parse', 'HEAD');
+const incoming = Number(git('rev-list', '--count', `HEAD..${template}`));
 if (branch === 'main') {
   const r = tryGit('merge', '--ff-only', template);
   if (!r.ok) fail(`Local main has diverged from ${template}. (Solutions belong on your own branch, not main.)\n${r.out}`);
@@ -48,8 +48,7 @@ ${git('diff', '--name-only', '--diff-filter=U').split('\n').map((f) => `    ${f}
   }
 }
 
-const added = Number(git('rev-list', '--count', `${before}..HEAD`));
-console.log(added ? `✔ Merged ${added} new commit(s) from ${template} into ${branch}` : `✔ ${branch} is already up to date with ${template}`);
+console.log(incoming ? `✔ Merged ${incoming} new commit(s) from ${template} into ${branch}` : `✔ ${branch} is already up to date with ${template}`);
 
 // Keep your local main in step with the template (only if that's a clean fast-forward).
 if (branch !== 'main' && branchExists('main') && tryGit('merge-base', '--is-ancestor', 'main', template).ok) {
